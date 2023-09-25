@@ -1,31 +1,19 @@
-﻿namespace Queues {
+﻿namespace ArraysDemo {
     using System;
 
-    internal class Node {
-        public string Data { get; set; }
-        public Node? Next { get; set; }
-    }
+    internal class Arrays {
+        private string[] _cities;
+        public string[] Cities { get; }
 
-    internal class Queue {
-        public Node? Front { get; set; }
-        public Node? Rear { get; set; }
-
-        public void Enqueue (string data) {
-            var newNode = new Node ();
-            newNode.Data = data;
-
-            if(this.Rear  == null){
-                this.Front = newNode;
-                this.Rear = newNode;
-            }
-            else{
-                this.Rear.Next = newNode;
-                newNode.Next = null;
-                this.Rear = newNode;
-            }
+        public Arrays()
+        {
+            _cities = new string[];
+        }
+        public void InsertAt (int index, string city) {
+            _cities[index] = city;          
         }
 
-        public string Dequeue () {
+        public string Delete () {
             string data = string.Empty;
             if (this.Front == null) {
                 return "Queue is Empty!!!";
