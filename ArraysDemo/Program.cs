@@ -55,14 +55,6 @@
             array.Delete("Kolkata");
             Console.WriteLine("After deleting Kolkata");
             array.Traversing();
-            // Console.WriteLine(queue.Dequeue());
-            // Console.WriteLine(queue.Dequeue());
-            // Console.WriteLine(queue.Peek());
-            // queue.Display();
-
-            // queue.Enqueue("F");
-            // Console.WriteLine(queue.Peek());
-            // queue.Display();
         }
     }
 }
