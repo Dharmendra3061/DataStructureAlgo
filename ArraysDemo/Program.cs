@@ -5,77 +5,64 @@
         private string[] _cities;
         public string[] Cities { get; }
 
-        public Arrays()
+        public Arrays(int size)
         {
-            _cities = new string[];
+            _cities = new string[size];
         }
+        
         public void InsertAt (int index, string city) {
             _cities[index] = city;          
         }
 
-        public string Delete () {
-            string data = string.Empty;
-            if (this.Front == null) {
-                return "Queue is Empty!!!";
-            } else if(this.Front.Next != null){
-                data = this.Front.Data;
-                this.Front = this.Front.Next;
-                return data;
-            } else{
-                data = this.Front.Data;
-                this.Front = null;
-                this.Rear = null;
-                return data;
-            }
-        }
-
-        public string Peek () {
-            if (this.Front == null) {
-                return "Queue is Empty!!!";
-            } else {
-                return this.Front.Data;
-            }
-        }
-
-        public void Display(){
-            Node temp = this.Front;
-            if(this.Front == null){
-                Console.WriteLine("Queue is Empty!!!");
-            }
-            else {
-                Console.WriteLine("Queue printing : ");
-                while(temp != null){
-                    Console.WriteLine(temp.Data);
-                    temp = temp.Next;
+        public void Delete (string cityToDelete) {
+            int indexOfCityToDelete = IndexOf(cityToDelete);
+            if(indexOfCityToDelete >= 0){
+                for(int i=indexOfCityToDelete; i<_cities.Length-1; i++){
+                    _cities[i] = _cities[i+1];
                 }
             }
+        }
+
+        public void Traversing() {
+            foreach(var city in _cities)
+            {
+                Console.WriteLine(city);
+            }
+        }
+
+        public int IndexOf(string city){
+            for(int i=0; i<_cities.Length; i++){
+                if(_cities[i] == city)
+                    return i;
+            }
+            return -1;
         }
     }
 
     public class Program {
         static void Main (string[] args) {
-            Console.WriteLine ("Queue implementation");
-// #error version // It provides the compiler and language version on compile in terminal.
+            Console.WriteLine ("Arrays implementation");
             Console.WriteLine();
-            Queue queue = new Queue();
-            
-            queue.Enqueue("A");
-            queue.Enqueue("B");
-            queue.Enqueue("C");
-            queue.Enqueue("D");
-            queue.Enqueue("E");
+            Arrays array = new Arrays(5); 
+            array.InsertAt(0,"Delhi");
+            array.InsertAt(1,"Mumbai");
+            array.InsertAt(2,"Kolkata");
+            array.InsertAt(3,"Banglore");
+            array.InsertAt(3,"Pune");
 
-            queue.Display();
-            Console.WriteLine(queue.Peek());
-            
-            Console.WriteLine(queue.Dequeue());
-            Console.WriteLine(queue.Dequeue());
-            Console.WriteLine(queue.Peek());
-            queue.Display();
+            array.Traversing();
 
-            queue.Enqueue("F");
-            Console.WriteLine(queue.Peek());
-            queue.Display();
+            array.Delete("Kolkata");
+            Console.WriteLine("After deleting Kolkata");
+            array.Traversing();
+            // Console.WriteLine(queue.Dequeue());
+            // Console.WriteLine(queue.Dequeue());
+            // Console.WriteLine(queue.Peek());
+            // queue.Display();
+
+            // queue.Enqueue("F");
+            // Console.WriteLine(queue.Peek());
+            // queue.Display();
         }
     }
 }
